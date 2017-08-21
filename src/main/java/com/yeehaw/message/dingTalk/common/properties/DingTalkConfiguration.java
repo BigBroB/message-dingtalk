@@ -8,9 +8,9 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 public class DingTalkConfiguration {
 	
-	public static String corpid = "ding7f95d4e991778734" ;
-	public static String corpsecret = "MjqX9DpyB2U0kZsBV8YxXKetP-xbpgbyWMR5WsBgw0CU66DTJ2Ymz_GcnD5ibhu6" ;
-	public static Integer agentid = 122261922;
+	public static String corpid ;
+	public static String corpsecret;
+	public static Integer agentid ;
 	
 	public DingTalkConfiguration() {
 	}
