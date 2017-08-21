@@ -11,4 +11,7 @@ SpringBoot项目仅仅需要，在项目中加入依赖。
   dingtalk.corpsecret=your_corpsecret
   dingtalk.agentid=your_agentid  
 ```
-项目应该就能正常使用了
+同时使用注解在启动文件上加入本包的扫描
+```
+@ComponentScan(basePackages = { "com.yeehaw.message" })
+```
