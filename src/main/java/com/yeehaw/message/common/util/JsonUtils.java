@@ -14,9 +14,9 @@ public class JsonUtils {
 	/**
 	 * 能将json中的日期相关的数据进行转换
 	 */
-	public static final Gson gsonDate = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN).create();
+	public static final Gson gsonDate = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN).disableHtmlEscaping().create();
 
-	public static final Gson gsonDateNoSplit = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN_NOSPLIT).create();
+	public static final Gson gsonDateNoSplit = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN_NOSPLIT).disableHtmlEscaping().create();
 	/**
 	 * 避免Gson使用时将一些字符自动转换为Unicode转义字符
 	 */

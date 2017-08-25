@@ -16,7 +16,7 @@ public class Test {
 		// request.setToparty("48425280");
 		// DingTalkMessageUtils.sendCompanySynMessage(request);
 		// List<Department> departments =
-		// DingTalkDepartmentUtils.getDepartmentList("1");
+		 DingTalkDepartmentUtils.getDepartmentList("1");
 
 		// for(Department department:departments) {
 		// MarkdownMessage markdownMessage = new MarkdownMessage("这是markdown测试信息3", "###
@@ -102,7 +102,7 @@ public class Test {
 		
 //		DepartmentDetail detail = DepartmentDetail.update().addName("可以的").addId("48417910").build();
 //		DingTalkDepartmentUtils.updateDepartment(detail);
-		DingTalkDepartmentUtils.delete("48417910");
+		//DingTalkDepartmentUtils.delete("48417910");
 	
 	}
 
