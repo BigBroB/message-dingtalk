@@ -1,5 +1,6 @@
 package com.yeehaw.message.common.util;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +18,10 @@ public class JsonUtils {
 	public static final Gson gsonDate = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN).disableHtmlEscaping().create();
 
 	public static final Gson gsonDateNoSplit = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN_NOSPLIT).disableHtmlEscaping().create();
+	
+	public static final Gson gsonDateAll = new GsonBuilder().registerTypeAdapter(Date.class, new ImprovedDateTypeAdapter()).create();
+	
+	
 	/**
 	 * 避免Gson使用时将一些字符自动转换为Unicode转义字符
 	 */
