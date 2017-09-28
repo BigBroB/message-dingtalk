@@ -1,11 +1,13 @@
 package com.yeehaw.message.common.util;
 
+import java.lang.reflect.Type;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 public class JsonUtils {
 
@@ -13,17 +15,25 @@ public class JsonUtils {
 	private static final String DATE_TIME_PATTERN_NOSPLIT = "yyyyMMddHHmmss";
 	public static final Gson gson = new Gson();
 	/**
-	 * 能将json中的日期相关的数据进行转换
+	 * 能将json中的日期相关的数据进行转�?
 	 */
-	public static final Gson gsonDate = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN).disableHtmlEscaping().create();
+	public static final Gson gsonDate = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN).disableHtmlEscaping()
+			.create();
 
-	public static final Gson gsonDateNoSplit = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN_NOSPLIT).disableHtmlEscaping().create();
-	
-	public static final Gson gsonDateAll = new GsonBuilder().registerTypeAdapter(Date.class, new ImprovedDateTypeAdapter()).create();
-	
-	
+	public static final Gson gsonDateNoSplit = new GsonBuilder().setDateFormat(DATE_TIME_PATTERN_NOSPLIT)
+			.disableHtmlEscaping().create();
+
+	public static final Gson gsonDateAll = new GsonBuilder()
+			.registerTypeAdapter(Date.class, new ImprovedDateTypeAdapter()).create();
 	/**
-	 * 避免Gson使用时将一些字符自动转换为Unicode转义字符
+	 * Gson gson = new GsonBuilder() //序列化null .serializeNulls() //
+	 * 设置日期时间格式，另有2个重载方法 // 在序列化和反序化时均生效 .setDateFormat("yyyy-MM-dd") // 禁此序列化内部类
+	 * .disableInnerClassSerialization() //生成不可执行的Json（多了 )]}' 这4个字符）
+	 * .generateNonExecutableJson() //禁止转义html标签 .disableHtmlEscaping() //格式化输出
+	 * .setPrettyPrinting() .create();
+	 */
+	/**
+	 * 避免Gson使用时将�?些字符自动转换为Unicode转义字符
 	 */
 	// public static final Gson gsonUnicode = new
 	// GsonBuilder().disableHtmlEscaping().create();
@@ -58,18 +68,29 @@ public class JsonUtils {
 		return gsonDateNoSplit.toJson(t);
 	}
 
-	@SuppressWarnings("unchecked")
 	public static Map<String, String> toMap(String jsonString) {
-		Map<String, String> data = new HashMap<String, String>();
-
-		return gsonDate.fromJson(jsonString, data.getClass());
+		return gsonDate.fromJson(jsonString, new TypeToken<Map<String, String>>() {
+		}.getType());
 	}
-	
-	@SuppressWarnings("unchecked")
+
+	public static Map<String, Object> toMapObject(String jsonString) {
+		return gsonDate.fromJson(jsonString, new TypeToken<Map<String, Object>>() {}.getType());
+	}
+
 	public static Map<String, Object> toObjectMap(String jsonString) {
-		Map<String, Object> data = new HashMap<String, Object>();
-
-		return gsonDate.fromJson(jsonString, data.getClass());
+		return gsonDate.fromJson(jsonString, new TypeToken<Map<String, Object>>() {}.getType());
 	}
+
+	public static <T> RestResult<T> fromJsonObject(String jsonString, Class<T> clazz) {
+		Type type = new ParameterizedTypeImpl(RestResult.class, new Class[] { clazz });
+		return gsonDate.fromJson(jsonString, type);
+	}
+
+	public static <T> RestResult<List<T>> fromJsonArray(String jsonString, Class<T> clazz) {
+	    Type listType = new ParameterizedTypeImpl(List.class, new Class[]{clazz});
+	    Type type = new ParameterizedTypeImpl(RestResult.class, new Type[]{listType});
+	    return gsonDate.fromJson(jsonString, type);
+	}
+
 	
 }

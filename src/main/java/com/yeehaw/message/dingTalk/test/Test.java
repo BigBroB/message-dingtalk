@@ -16,16 +16,15 @@ public class Test {
 		// request.setToparty("48425280");
 		// DingTalkMessageUtils.sendCompanySynMessage(request);
 		// List<Department> departments =
-		 DingTalkDepartmentUtils.getDepartmentList("1");
-
-		// for(Department department:departments) {
-		// MarkdownMessage markdownMessage = new MarkdownMessage("这是markdown测试信息3", "###
-		// 标题 \n **貌似是粗体a3**");
-		// MarkdownMessageRequest request = new MarkdownMessageRequest(markdownMessage);
-		// request.setToparty(department.getId().toString());
-		// //DingTalkMessageUtils.sendCompanyAsyMessage(request);
-		// DingTalkMessageUtils.sendCompanySynMessage(request);
-		// }
+//		 DingTalkDepartmentUtils.getDepartmentList("1");
+//
+//		 for(Department department:departments) {
+//		 MarkdownMessage markdownMessage = new MarkdownMessage("这是markdown测试信息3", "###标题 \n **貌似是粗体a3**");
+//		 MarkdownMessageRequest request = new MarkdownMessageRequest(markdownMessage);
+//		 request.setToparty(department.getId().toString());
+//		 //DingTalkMessageUtils.sendCompanyAsyMessage(request);
+//		 DingTalkMessageUtils.sendCompanySynMessage(request);
+//		 }
 		// BaseRoleRequest request = new BaseRoleRequest();
 		//
 		// //DingTalkRoleUtils.getRoleList(request);
